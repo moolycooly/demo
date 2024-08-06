@@ -43,6 +43,9 @@ public class TranslationText {
     private RestTemplate restTemplate;
 
     public String translateText(String text, String source, String target) throws Exception {
+        if(text == null || source == null || target == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Одно из введеных полей пустое");
+        }
         if (!languages.contains(source)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Не найден язык: " + source);
         }
