@@ -20,7 +20,7 @@ import java.util.concurrent.Future;
 public class TranslationText {
     private static final int MAX_THREADS = 10;
     private static final ExecutorService executorService = Executors.newFixedThreadPool(MAX_THREADS);
-    private static final String TranslationURL = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=%s&tl=%s&hl=en&dt=t&q=%s";
+    private static final String TranslationURL = "https://trsanslate.googleapis.com/translate_a/single?client=gtx&sl=%s&tl=%s&hl=en&dt=t&q=%s";
     private static final HashSet<String> languages = new HashSet<>(Arrays.asList(
             "aa", "ab", "af", "am", "an", "ar", "as", "ay", "az",
             "ba", "be", "bg", "bh", "bi", "bn", "bo", "br", "ca",
@@ -57,12 +57,7 @@ public class TranslationText {
             futures.add(future);
         }
         for(Future<String> future : futures) {
-            try {
-                translatedText.append(future.get()).append(" ");
-            }
-            catch (Exception e) {
-                throw e;
-            }
+            translatedText.append(future.get()).append(" ");
         }
         return translatedText.toString().trim();
 
