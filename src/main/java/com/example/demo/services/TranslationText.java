@@ -20,7 +20,7 @@ import java.util.concurrent.Future;
 public class TranslationText {
     private static final int MAX_THREADS = 10;
     private static final ExecutorService executorService = Executors.newFixedThreadPool(MAX_THREADS);
-    private static final String TranslationURL = "https://trsanslate.googleapis.com/translate_a/single?client=gtx&sl=%s&tl=%s&hl=en&dt=t&q=%s";
+    private static final String TranslationURL = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=%s&tl=%s&hl=en&dt=t&q=%s";
     private static final HashSet<String> languages = new HashSet<>(Arrays.asList(
             "aa", "ab", "af", "am", "an", "ar", "as", "ay", "az",
             "ba", "be", "bg", "bh", "bi", "bn", "bo", "br", "ca",
@@ -46,10 +46,10 @@ public class TranslationText {
         if(text == null || source == null || target == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Одно из введеных полей пустое");
         }
-        if (!languages.contains(source)) {
+        if (!languages.contains(source.toLowerCase())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Не найден язык: " + source);
         }
-        if (!languages.contains(target)) {
+        if (!languages.contains(target.toLowerCase())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Не найден язык: " + target);
         }
         String[] words = text.split(" ");
