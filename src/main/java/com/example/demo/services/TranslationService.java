@@ -18,7 +18,6 @@ public class TranslationService {
     @Autowired
     private TranslationText translationText;
 
-    RestTemplate restTemplate;
     public String translate(TranslationRequest request)  {
 
         String result;

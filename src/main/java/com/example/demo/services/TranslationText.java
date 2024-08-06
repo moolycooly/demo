@@ -18,10 +18,10 @@ import java.util.concurrent.Future;
 
 @Service
 public class TranslationText {
-    private static final int MAX_THREADS = 10;
-    private static final ExecutorService executorService = Executors.newFixedThreadPool(MAX_THREADS);
-    private static final String TranslationURL = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=%s&tl=%s&hl=en&dt=t&q=%s";
-    private static final HashSet<String> languages = new HashSet<>(Arrays.asList(
+    private final int MAX_THREADS = 10;
+    private final ExecutorService executorService = Executors.newFixedThreadPool(MAX_THREADS);
+    private final String TranslationURL = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=%s&tl=%s&hl=en&dt=t&q=%s";
+    private final HashSet<String> languages = new HashSet<>(Arrays.asList(
             "aa", "ab", "af", "am", "an", "ar", "as", "ay", "az",
             "ba", "be", "bg", "bh", "bi", "bn", "bo", "br", "ca",
             "co", "cs", "cy", "da", "de", "dz", "el", "en", "eo",
